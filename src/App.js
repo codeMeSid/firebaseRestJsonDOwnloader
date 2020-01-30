@@ -11,8 +11,9 @@ function App() {
             fetch("https://database-storage-1ae89.firebaseio.com/patients.json")
               .then(data => data.json())
               .then(t => {
-                t = Object.values(t).map(({ name }) => ({ name }));
-                var blob = new Blob([JSON.stringify(t)], {
+                var h = Object.values(t).map(({ name }) => ({ name }));
+                console.log({ t, h: JSON.stringify(h) });
+                var blob = new Blob([JSON.stringify(h)], {
                   type: "application/json"
                 });
                 var link = document.createElement("a");
