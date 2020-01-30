@@ -1,23 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+        className={"btn btn--animated btn--white"}
+          onClick={() => {
+            fetch("https://database-storage-1ae89.firebaseio.com/patients.json")
+              .then(data => data.json())
+              .then(t => {
+                var blob = new Blob([JSON.stringify(t)], {
+                  type: "application/json"
+                });
+                var link = document.createElement("a");
+                link.href = window.URL.createObjectURL(blob);
+                link.download = "patient";
+                link.click();
+              });
+          }}
         >
-          Learn React
-        </a>
+          CLICK ME
+        </button>
       </header>
     </div>
   );
