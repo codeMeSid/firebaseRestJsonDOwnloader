@@ -6,11 +6,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <button
-        className={"btn btn--animated btn--white"}
+          className={"btn btn--animated btn--white"}
           onClick={() => {
             fetch("https://database-storage-1ae89.firebaseio.com/patients.json")
               .then(data => data.json())
               .then(t => {
+                t = Object.values(t).map(({ name }) => ({ name }));
                 var blob = new Blob([JSON.stringify(t)], {
                   type: "application/json"
                 });
