@@ -13,7 +13,7 @@
     "react-scripts": "3.3.0"
   },
   "scripts": {
-    "post": "git add . && git commit -m 'r' && npm run predeploy && npm run deploy && git push",
+    "post": "git add . && git commit -m 'update' && npm run predeploy && npm run deploy && git push",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

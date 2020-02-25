@@ -2,13 +2,16 @@ import React from "react";
 import "./App.css";
 
 function App() {
+  const [val, setVal] = React.useState("");
+
   return (
     <div className="App">
       <header className="App-header">
+        <input value={val} onChange={e => setVal(e.target.value)} />
         <button
           className={"btn btn--animated btn--white"}
           onClick={() => {
-            fetch("https://database-storage-1ae89.firebaseio.com/patients.json")
+            fetch(val)
               .then(data => data.json())
               .then(t => {
                 var h = Object.values(t).map(({ name }) => ({ name }));
@@ -20,7 +23,8 @@ function App() {
                 link.href = window.URL.createObjectURL(blob);
                 link.download = "patient";
                 link.click();
-              });
+              })
+              .catch(err => alert(err));
           }}
         >
           CLICK ME
